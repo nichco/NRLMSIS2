@@ -4,6 +4,7 @@ import pickle
 # data from https://kauai.ccmc.gsfc.nasa.gov/instantrun/nrlmsis/
 # https://ccmc.gsfc.nasa.gov/models/NRLMSIS~v2.0/
 
+altitude = np.linspace(0,1000,10)
 
 total_density = np.array([1.23E-03,4.08E-04,8.87E-05,1.82E-05,3.99E-06,1.07E-06,3.24E-07,9.02E-08,1.92E-08,2.92E-09,4.51E-10,
 7.05E-11,1.59E-11,6.07E-12,2.98E-12,1.68E-12,1.04E-12,6.85E-13,4.72E-13,3.37E-13,2.48E-13,1.86E-13,1.42E-13,1.11E-13,
