@@ -2,6 +2,7 @@ import csdl
 import python_csdl_backend
 import numpy as np
 import pickle
+from smt.surrogate_models import RBF, RMTB, KRG
 import matplotlib.pyplot as plt
 plt.rcParams.update(plt.rcParamsDefault)
 
@@ -12,7 +13,7 @@ rho_data = pickle.load(file)
 eps = 1E-12
 alt = np.arange(0, 1000 + eps, 10)
 
-coefs = np.polyfit(alt, rho_data, 4)
+coefs = np.polyfit(alt, rho_data, 12)
 
 
 class Atm(csdl.Model):
