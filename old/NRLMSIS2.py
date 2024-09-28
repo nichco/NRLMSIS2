@@ -12,7 +12,7 @@ eps = 1E-12
 alt = np.arange(0, 1000 + eps, 10)
 
 
-from std_atm import std_atm
+from old.std_atm import std_atm
 density = np.zeros_like(alt)
 temp_std = np.zeros_like(alt)
 for i, h in enumerate(alt):
