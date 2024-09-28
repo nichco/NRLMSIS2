@@ -9,6 +9,10 @@ altitude = pd.to_numeric(df.iloc[1:, 5]).to_numpy() # km
 temperature = pd.to_numeric(df.iloc[1:, 12]).to_numpy() # K
 density = pd.to_numeric(df.iloc[1:, 11]).to_numpy() # g / cm^3
 
+# unit conversions
+altitude = altitude * 1e3 # m
+density = density * 100**3 / 1000 # kg / m^3
+
 
 print('altitude: ', altitude)
 print('temperature: ', temperature)
