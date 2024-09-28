@@ -69,7 +69,7 @@ if __name__ == '__main__':
     recorder = csdl.Recorder(inline=True)
     recorder.start()
 
-    altitude = csdl.Variable(value=500000)
+    altitude = csdl.Variable(value=10000)
 
     atm = Atmosphere()
     outputs = atm.evaluate(altitude)
@@ -78,6 +78,11 @@ if __name__ == '__main__':
     speed_of_sound = (1.4 * 287 * temperature) ** 0.5
 
     recorder.stop()
+
+    sim = csdl.experimental.PySimulator(recorder)
+    sim.check_totals(ofs=[density, temperature], wrts=[altitude])
+    sim.run()
+
 
     print(density.value)
     print(temperature.value)
