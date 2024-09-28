@@ -16,21 +16,13 @@ class Atmosphere(csdl.CustomExplicitOperation):
         super().__init__()
             
         # assign parameters to the class
-        path = pkg_resources.resource_filename(__name__, 'data/altitude_0_1000_1.pkl')
+        path = pkg_resources.resource_filename(__name__, 'data/akima_fit.pkl')
         file = open(path, 'rb')
-        altitude = pickle.load(file)
-
-        path = pkg_resources.resource_filename(__name__, 'data/density_0_1000_1.pkl')
-        file = open(path, 'rb')
-        density = pickle.load(file)
-        self.akima_density = Akima1DInterpolator(altitude, density, method="akima")
-        self.akima_density_derivative = Akima1DInterpolator.derivative(self.akima_density)
-
-        path = pkg_resources.resource_filename(__name__, 'data/temperature_0_1000_1.pkl')
-        file = open(path, 'rb')
-        temperature = pickle.load(file)
-        self.akima_temperature = Akima1DInterpolator(altitude, temperature, method="akima")
-        self.akima_temperature_derivative = Akima1DInterpolator.derivative(self.akima_temperature)
+        akima_fit = pickle.load(file)
+        self.akima_density = akima_fit['akima_density']
+        self.akima_density_derivative = akima_fit['akima_density_derivative']
+        self.akima_temperature = akima_fit['akima_temperature']
+        self.akima_temperature_derivative = akima_fit['akima_temperature_derivative']
 
 
     # def evaluate(self, inputs: csdl.VariableGroup):

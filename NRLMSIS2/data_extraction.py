@@ -4,13 +4,13 @@ import numpy as np
 
 
 # Read the Excel file
-df_0_149 = pd.read_excel('0_149.xlsx')
-df_150_299 = pd.read_excel('150_299.xlsx')
-df_300_449 = pd.read_excel('300_449.xlsx')
-df_450_599 = pd.read_excel('450_599.xlsx')
-df_600_749 = pd.read_excel('600_749.xlsx')
-df_750_899 = pd.read_excel('750_899.xlsx')
-df_900_1000 = pd.read_excel('900_1000.xlsx')
+df_0_149 = pd.read_excel('NRLMSIS2/data/0_149.xlsx')
+df_150_299 = pd.read_excel('NRLMSIS2/data/150_299.xlsx')
+df_300_449 = pd.read_excel('NRLMSIS2/data/300_449.xlsx')
+df_450_599 = pd.read_excel('NRLMSIS2/data/450_599.xlsx')
+df_600_749 = pd.read_excel('NRLMSIS2/data/600_749.xlsx')
+df_750_899 = pd.read_excel('NRLMSIS2/data/750_899.xlsx')
+df_900_1000 = pd.read_excel('NRLMSIS2/data/900_1000.xlsx')
 
 altitude_0_149 = pd.to_numeric(df_0_149.iloc[1:, 5]).to_numpy() # km
 temperature_0_149 = pd.to_numeric(df_0_149.iloc[1:, 12]).to_numpy() # K
@@ -53,16 +53,16 @@ altitude = altitude * 1e3 # m
 density = density * 100**3 / 1000 # kg / m^3
 
 
-print('altitude: ', altitude)
-print('temperature: ', temperature)
-print('density: ', density)
+# print('altitude: ', altitude)
+# print('temperature: ', temperature)
+# print('density: ', density)
 
 
-with open('altitude_0_1000_1.pkl', 'wb') as f:
-    pickle.dump(altitude, f)
+# with open('altitude_0_1000_1.pkl', 'wb') as f:
+#     pickle.dump(altitude, f)
 
-with open('temperature_0_1000_1.pkl', 'wb') as f:
-    pickle.dump(temperature, f)
+# with open('temperature_0_1000_1.pkl', 'wb') as f:
+#     pickle.dump(temperature, f)
 
-with open('density_0_1000_1.pkl', 'wb') as f:
-    pickle.dump(density, f)
+# with open('density_0_1000_1.pkl', 'wb') as f:
+#     pickle.dump(density, f)
