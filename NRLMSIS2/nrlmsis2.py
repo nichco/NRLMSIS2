@@ -2,6 +2,7 @@ import csdl_alpha as csdl
 import numpy as np
 from scipy.interpolate import Akima1DInterpolator
 import pickle
+import pkg_resources
 
 
 
@@ -15,15 +16,18 @@ class Atmosphere(csdl.CustomExplicitOperation):
         super().__init__()
             
         # assign parameters to the class
-        file = open('altitude_0_1000_1.pkl', 'rb')
+        path = pkg_resources.resource_filename(__name__, 'data/altitude_0_1000_1.pkl')
+        file = open(path, 'rb')
         altitude = pickle.load(file)
 
-        file = open('density_0_1000_1.pkl', 'rb')
+        path = pkg_resources.resource_filename(__name__, 'data/density_0_1000_1.pkl')
+        file = open(path, 'rb')
         density = pickle.load(file)
         self.akima_density = Akima1DInterpolator(altitude, density, method="akima")
         self.akima_density_derivative = Akima1DInterpolator.derivative(self.akima_density)
 
-        file = open('temperature_0_1000_1.pkl', 'rb')
+        path = pkg_resources.resource_filename(__name__, 'data/temperature_0_1000_1.pkl')
+        file = open(path, 'rb')
         temperature = pickle.load(file)
         self.akima_temperature = Akima1DInterpolator(altitude, temperature, method="akima")
         self.akima_temperature_derivative = Akima1DInterpolator.derivative(self.akima_temperature)
@@ -54,8 +58,8 @@ class Atmosphere(csdl.CustomExplicitOperation):
     def compute_derivatives(self, input_vals, outputs_vals, derivatives):
         altitude = input_vals['altitude']
 
-        derivatives['density', 'altitude'] = self.akima_density_derivative(altitude)
-        derivatives['temperature', 'altitude'] = self.akima_temperature_derivative(altitude)
+        derivatives['density', 'altitude'] = np.diag(self.akima_density_derivative(altitude))
+        derivatives['temperature', 'altitude'] = np.diag(self.akima_temperature_derivative(altitude))
 
 
 
@@ -69,7 +73,7 @@ if __name__ == '__main__':
     recorder = csdl.Recorder(inline=True)
     recorder.start()
 
-    altitude = csdl.Variable(value=10000)
+    altitude = csdl.Variable(value=np.ones(10) * 10000)
 
     atm = Atmosphere()
     outputs = atm.evaluate(altitude)
