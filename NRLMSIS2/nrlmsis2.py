@@ -69,7 +69,7 @@ if __name__ == '__main__':
     recorder = csdl.Recorder(inline=True)
     recorder.start()
 
-    altitude = csdl.Variable(value=np.ones(10) * 50000)
+    altitude = csdl.Variable(value=np.ones(10) * 0)
 
     atm = Atmosphere()
     outputs = atm.evaluate(altitude)
