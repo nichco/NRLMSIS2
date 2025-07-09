@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams.update(plt.rcParamsDefault)
 
-file = open('density.pkl', 'rb')
+file = open('old/density.pkl', 'rb')
 rho = pickle.load(file) * 100**3 / 1000
 
-temperature = pickle.load(open('temperature.pkl', 'rb'))
+temperature = pickle.load(open('old/temperature.pkl', 'rb'))
 
 eps = 1E-12
 alt = np.arange(0, 1000 + eps, 10)
