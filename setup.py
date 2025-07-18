@@ -20,5 +20,6 @@ setup(
         'NRLMSIS2': ['data/altitude_0_1000_1.pkl'],
         'NRLMSIS2': ['data/density_0_1000_1.pkl'],
         'NRLMSIS2': ['data/temperature_0_1000_1.pkl'],
+        'NRLMSIS2': ['data/akima_fit.pkl'],
     },
 )
